@@ -1,9 +1,13 @@
 CREATE DATABASE songs_db;
 
+USE songs_db;
+
 CREATE SCHEMA reporting_schema;
 
+DROP TABLE IF EXISTS reporting_schema.genre_level_kpis;
+
 CREATE TABLE reporting_schema.genre_level_kpis(
-    listen_data DATE NOT NULL, 
+    listen_date DATE NOT NULL, 
     track_genre VARCHAR(255) NOT NULL, 
     listen_count INT, 
     popularity_index FLOAT, 
@@ -11,9 +15,10 @@ CREATE TABLE reporting_schema.genre_level_kpis(
     most_popular_track_id VARCHAR(255)
 );
 
+DROP TABLE IF EXISTS reporting_schema.tmp_genre_level_kpis;
 
 CREATE TABLE reporting_schema.tmp_genre_level_kpis (
-    listen_data DATE NOT NULL, 
+    listen_date DATE NOT NULL, 
     track_genre VARCHAR(255) NOT NULL, 
     listen_count INT, 
     popularity_index FLOAT, 
@@ -40,7 +45,5 @@ CREATE TABLE reporting_schema.tmp_hourly_kpis (
     top_artist Varchar(255), 
     avg_sessions_per_user FLOAT, 
     diversity_index FLOAT, 
-    most_engaged_age_group VARCHAR(255),
+    most_engaged_age_group VARCHAR(255)
 );
-
-

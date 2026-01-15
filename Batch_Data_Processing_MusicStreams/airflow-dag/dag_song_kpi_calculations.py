@@ -22,8 +22,8 @@ default_args = {
 BUCKET_NAME = "de-airflow-sansdags"
 SONGS_FILE_PATH = "spotify_data/songs.csv"
 USERS_FILE_PATH = "spotify_data/users.csv"
-STREAMS_PREFIX = "spotify_data/streams/"
-ARCHIVE_PREFIX = "spotify_data/streams/archived/"
+STREAMS_PREFIX = "streams/"
+ARCHIVE_PREFIX = "streams/archived/"
 
 
 # Required columns from each of these file locations
@@ -134,7 +134,7 @@ def branch_task(ti): # ti - task instance while airflow executes a python callab
 
 ######## =================== START: TASK - CALCULATION ASSERTS =============== #####
 def upsert_to_redshift(df, table_name, id_columns):
-    redshift_hook = PostgresHook(postgres_conn_id = "redshift_default")
+    redshift_hook = PostgresHook(postgres_conn_id = "sansAirflowRedshiftConn")
     conn = redshift_hook.get_conn()
     cursor = conn.cursor()
 
