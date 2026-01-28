@@ -9,8 +9,8 @@ import logging
 
 import pyspark
 from pyspark.sql import SparkSession
-spark = SparkSession.builder.appName("pyspark-ml") \
-    .config() \
+spark = SparkSession.builder \
+    .appName("pyspark-ml") \
     .getOrCreate()
 
 
@@ -48,7 +48,7 @@ def branch_task(ti):
     file_status_v = ti.xcom_pull(task_ids = "file_status_check")
     
     if all(file_status_v):
-        return ""
+        return "success_tag"
     else:
         return "end_dag"
 
